@@ -1,7 +1,22 @@
+
+drop table assets;
+drop table asset_types;
+drop table attendee_meal_choices;
+drop table attendee_plus_one_meal_choices;
+drop table attendees;
+drop table betrothed ;
+drop table employees ;
+drop table meal_options;
+drop table users;
+drop table wedding_bookings ;
+
+
+/*
+
 create table if not exists users(
- 	email varchar(40),
- 	user_name varchar(40),
- 	pass_word varchar(40),
+ 	email varchar(255),
+ 	user_name varchar(80),
+ 	pass_word varchar(80),
  	primary key(email)
 	
 );

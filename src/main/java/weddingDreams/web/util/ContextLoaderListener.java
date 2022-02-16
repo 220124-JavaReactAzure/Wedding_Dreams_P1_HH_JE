@@ -13,30 +13,33 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import weddingDreams.web.servlets.WeddingServlet;
 
-@WebListener
-public class ContextLoaderListener implements ServletContextListener {
-//	private final Logger logger = LogManager.getLogger();
-	
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
-	
-	public void contextInitalized(ServletContextEvent sce) {
-		ObjectMapper mapper = new ObjectMapper();
-		
-		
+public class ContextLoaderListener implements ServletContextListener {
+	@Override
+	public void contextInitialized(ServletContextEvent sce) {
+		//initialize DAOS, Services, and Servlets
+		// then add the servlets to the context
 		ServletContext context = sce.getServletContext();
-		// instantiate the servlets then add them here 
-		WeddingServlet ws = new WeddingServlet(mapper);
-		context .addServlet("Wedding Servlet", ws).addMapping("/wedding");
-//		context.addServlet("MonsterServlet", monsterServlet).addMapping("/monsters/*");
-//		context.addServlet("AuthServlet", authServlet).addMapping("/auth");
-		
+		//context.addServlet("NameOfServlet", servletInited).addMapping("/urlPath/*");
 	}
 	
+	@Override
+	public void contextDestroyed(ServletContextEvent sce) {
+		ServletContextListener.super.contextDestroyed(sce);
+	}
+}
+
+
+
 	
+
+
 	
 	
 	
 	
 	
 
-}
