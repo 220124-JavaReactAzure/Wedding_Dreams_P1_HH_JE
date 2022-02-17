@@ -1,11 +1,49 @@
 package weddingDreams.models;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+
+@Entity
+@Table(name="attendee")
 
 public class Attendee {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	// this line below might have to be gone???
+	@Column(name="attendee_id")
 	private int attendee_id;
+	
+	@OneToOne(optional = false, cascade = CascadeType.ALL)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "user_id", unique = true, nullable = false, updatable = true)
 	private User user;
+	
+	
+	
+	
+	
+	// must do some many-to-many relationship or join column
 	private Wedding wedding;
+	
+	@Column(name="rsvp_response")
 	private boolean rsvp_response;
+	
+	@Column(name="plus_one_response")
 	private boolean plus_one_response;
+	
+	
 	public int getAttendee_id() {
 		return attendee_id;
 	}
@@ -36,6 +74,25 @@ public class Attendee {
 	public void setPlus_one_response(boolean plus_one_response) {
 		this.plus_one_response = plus_one_response;
 	}
+	
+	
+	// Overloaded constructors
+	public Attendee() {
+		
+	}
+	
+	
+	public Attendee(int attendee_id, User user, Wedding wedding, boolean rsvp_response, boolean plus_one_response) {
+		super();
+		this.attendee_id = attendee_id;
+		this.user = user;
+		this.wedding = wedding;
+		this.rsvp_response = rsvp_response;
+		this.plus_one_response = plus_one_response;
+	}
+	
+	
+	// other methods
 	@Override
 	public int hashCode() {
 		final int prime = 31;

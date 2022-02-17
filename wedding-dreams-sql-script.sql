@@ -1,14 +1,4 @@
 
-drop table assets;
-drop table asset_types;
-drop table attendee_meal_choices;
-drop table attendee_plus_one_meal_choices;
-drop table attendees;
-drop table betrothed ;
-drop table employees ;
-drop table meal_options;
-drop table users;
-drop table wedding_bookings ;
 
 
 /*

@@ -1,6 +1,6 @@
 package weddingDreams.web.util;
 
-import java.lang.System.Logger;
+//import java.lang.System.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -20,8 +20,10 @@ import javax.servlet.ServletContextListener;
 public class ContextLoaderListener implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		//initialize DAOS, Services, and Servlets
+		//initialize all DAOS, Services, and Servlets
 		// then add the servlets to the context
+		
+		
 		ServletContext context = sce.getServletContext();
 		//context.addServlet("NameOfServlet", servletInited).addMapping("/urlPath/*");
 	}

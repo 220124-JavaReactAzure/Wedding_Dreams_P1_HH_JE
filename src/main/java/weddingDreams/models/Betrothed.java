@@ -1,12 +1,51 @@
 package weddingDreams.models;
+import java.util.Objects;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+@Entity
+@Table(name="betrothed")
 public class Betrothed {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	// this column below may have to go??
+	@Column(name="betrothed_id", unique=true, nullable=false)
+	private int betrothed_id;
+	
+	@OneToOne(optional = false, cascade = CascadeType.ALL)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "user_id", unique = true, nullable = false, updatable = true)
+	private User user;
+	
+	
+	// will I need to create a new column name??
+	@OneToOne(optional = false, cascade = CascadeType.ALL)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "wedding_booking_id", unique = true, nullable = false, updatable = true)
 	Wedding wedding;
-	User user;
+
 	
 	
 	
+	public int getBetrothed_id() {
+		return betrothed_id;
+	}
+	public void setBetrothed_id(int betrothed_id) {
+		this.betrothed_id = betrothed_id;
+	}
 	public Wedding getWedding() {
 		return wedding;
 	}
@@ -19,13 +58,27 @@ public class Betrothed {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+
+	// overloaded constructors
+	public Betrothed() {
+		
+	}
+	
+
+	
+	public Betrothed(int betrothed_id, Wedding wedding, User user) {
+		super();
+		this.betrothed_id = betrothed_id;
+		this.wedding = wedding;
+		this.user = user;
+	}
+
+	
+	// other methods
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
-		result = prime * result + ((wedding == null) ? 0 : wedding.hashCode());
-		return result;
+		return Objects.hash(betrothed_id, user, wedding);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -36,22 +89,15 @@ public class Betrothed {
 		if (getClass() != obj.getClass())
 			return false;
 		Betrothed other = (Betrothed) obj;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
-			return false;
-		if (wedding == null) {
-			if (other.wedding != null)
-				return false;
-		} else if (!wedding.equals(other.wedding))
-			return false;
-		return true;
+		return betrothed_id == other.betrothed_id && Objects.equals(user, other.user)
+				&& Objects.equals(wedding, other.wedding);
 	}
 	@Override
 	public String toString() {
-		return "Betrothed [wedding=" + wedding + ", user=" + user + "]";
+		return "Betrothed [betrothed_id=" + betrothed_id + ", wedding=" + wedding + ", user=" + user + "]";
 	}
+	
+
 	
 	
 

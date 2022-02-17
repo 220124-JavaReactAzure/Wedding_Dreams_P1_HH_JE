@@ -1,24 +1,45 @@
 package weddingDreams.models;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
+
+
+@Entity
+@Table(name="wedding")
 
 public class Wedding {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="wedding_booking_id", unique=true, nullable=false)
 	private int wedding_booking_id;
-	private double budget;
+	
+
+	@Column(name="price")
+	private double price;
+	
+	@Column(name="wedding_date", unique=true)
 	private Date wedding_date;
+	
+	@Column(name="rsvp_date")
 	private Date rsvp_date;
+	
+	
 	public int getWedding_booking_id() {
 		return wedding_booking_id;
 	}
 	public void setWedding_booking_id(int wedding_booking_id) {
 		this.wedding_booking_id = wedding_booking_id;
 	}
-	public double getBudget() {
-		return budget;
+	public double getPrice() {
+		return price;
 	}
-	public void setBudget(double budget) {
-		this.budget = budget;
+	public void setPrice(double price) {
+		this.price = price;
 	}
 	public Date getWedding_date() {
 		return wedding_date;
@@ -32,12 +53,30 @@ public class Wedding {
 	public void setRsvp_date(Date rsvp_date) {
 		this.rsvp_date = rsvp_date;
 	}
+	
+	
+	// overloaded constructors
+	public Wedding() {
+		
+	}
+	
+
+	public Wedding(int wedding_booking_id, double price, Date wedding_date, Date rsvp_date) {
+		super();
+		this.wedding_booking_id = wedding_booking_id;
+		this.price = price;
+		this.wedding_date = wedding_date;
+		this.rsvp_date = rsvp_date;
+	}
+	
+	
+	// other methods
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		long temp;
-		temp = Double.doubleToLongBits(budget);
+		temp = Double.doubleToLongBits(price);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((rsvp_date == null) ? 0 : rsvp_date.hashCode());
 		result = prime * result + wedding_booking_id;
@@ -53,7 +92,7 @@ public class Wedding {
 		if (getClass() != obj.getClass())
 			return false;
 		Wedding other = (Wedding) obj;
-		if (Double.doubleToLongBits(budget) != Double.doubleToLongBits(other.budget))
+		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
 			return false;
 		if (rsvp_date == null) {
 			if (other.rsvp_date != null)
@@ -71,7 +110,7 @@ public class Wedding {
 	}
 	@Override
 	public String toString() {
-		return "Wedding [wedding_booking_id=" + wedding_booking_id + ", budget=" + budget + ", wedding_date="
+		return "Wedding [wedding_booking_id=" + wedding_booking_id + ", price=" + price + ", wedding_date="
 				+ wedding_date + ", rsvp_date=" + rsvp_date + "]";
 	}
 	

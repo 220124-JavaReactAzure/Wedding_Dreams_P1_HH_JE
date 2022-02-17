@@ -1,11 +1,63 @@
 package weddingDreams.models;
+import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+
+@Entity
+@Table(name="users")
 public class User {
 	
-	private String username;
-	private String password;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name ="user_id", unique = true, nullable = false)
+	private int user_id;
+	
+	
+	
+//	private int user_type;
+	
+	
+	@Column(name="email", unique = true, nullable = false)
 	private String email;
-	private String phone;
+	
+	@Column(name="username", unique = true, nullable = false)
+	private String username;
+	
+	@Column(name="password")
+	private String password;
+	
+	
+	
+	
+	
+	// overloaded constructors
+	public User() {
+		
+	}
+	
+	
+
+	public User(int user_id, String email, String username, String password) {
+		super();
+		this.user_id = user_id;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+	}
+
+
+
+
+
+
+	// getters and setters
 	public String getUsername() {
 		return username;
 	}
@@ -24,21 +76,19 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPhone() {
-		return phone;
+
+	public int getUser_id() {
+		return user_id;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
+	
+	
+	//other methods
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		return result;
+		return Objects.hash(email, password, user_id, username);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -49,32 +99,22 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (phone == null) {
-			if (other.phone != null)
-				return false;
-		} else if (!phone.equals(other.phone))
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
-		return true;
+		return Objects.equals(email, other.email) && Objects.equals(password, other.password)
+				&& user_id == other.user_id && Objects.equals(username, other.username);
 	}
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", email=" + email + ", phone=" + phone + "]";
+		return "User [user_id=" + user_id + ", email=" + email + ", username=" + username + ", password=" + password
+				+ "]";
 	}
+
+	
+	
+	
+	
+	
+	
+
 	
 	
 	

@@ -1,9 +1,28 @@
 package weddingDreams.models;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+
+
+@Entity
+@Table(name="meal_options")
 public class MealOptions {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "meal_id")
 	private int meal_id;
+	
+	@Column(name="meal_description")
 	private String meal_description;
+	
+	
+	
+	
 	public int getMeal_id() {
 		return meal_id;
 	}
