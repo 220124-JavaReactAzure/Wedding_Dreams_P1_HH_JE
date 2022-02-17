@@ -31,7 +31,7 @@ public class Asset {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "asset_id")
+	@Column(name = "asset_id", unique=true, nullable=false)
 	private int asset_id;
 	
 	@Column(name="email")
@@ -46,7 +46,7 @@ public class Asset {
 	@Column(name="price")
 	private double price;
 	
-	
+	// will it automatically create a new column?? or do i need an @Column annotation?
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "asset_type_id", unique = true, nullable = false, updatable = true)

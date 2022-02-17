@@ -14,7 +14,7 @@ public class MealOptions {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "meal_id")
+	@Column(name = "meal_id", unique=true, nullable=false)
 	private int meal_id;
 	
 	@Column(name="meal_description")
