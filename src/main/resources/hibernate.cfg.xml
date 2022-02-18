@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+
+		<!-- JDBC -->
+		<property name="hibernate.connection.username">hospitalh@jr-postgres-hospital</property>
+		<property name="hibernate.connection.password">FoolsGold69*</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://jr-postgres-hospital.postgres.database.azure.com:5432/postgres?currentSchema=weddingdreams</property>
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+		<!-- Hibernate Properties -->
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="hibernate.weddingdreams">public</property> <!-- This should be the name of your schema -->
+		<!-- Hibernate console output -->
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<!-- DDL -->
+		<property name="hibernate.hbm2ddl.auto">create</property>
+		<!-- Anyone remember what setting our hbm2ddl.auto to create will do? -->
+		<!-- It will wipe all tables and data, and recreate it -->
+
+		<!-- We HAVE TO map our classes here in order for them to get picked up 
+			by Hibernate -->
+		<mapping class="weddingDreams.models.Asset" />
+		<mapping class="weddingDreams.models.AssetType" />
+		<mapping class="weddingDreams.models.MealOptions" />
+		<mapping class="weddingDreams.models.User" />
+		<mapping class="weddingDreams.models.UserType" />
+		<mapping class="weddingDreams.models.Wedding" />
+
+
+
+
+	</session-factory>
+</hibernate-configuration>

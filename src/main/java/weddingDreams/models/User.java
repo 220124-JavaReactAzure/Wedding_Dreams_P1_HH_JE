@@ -29,46 +29,65 @@ public class User {
 	@Column(name="user_id", unique=true, nullable=false)
 	private int user_id;
 	
-	@Column(name="name")
-	private String name;
-	
-	
 	
 	// will this create a column in my users table??
+	@Column(name="user_type_id")
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "user_type_id", unique = true, nullable = false, updatable = true)
 	private UserType userType;
 	
 	
+	@Column(name="name")
+	private String name;
+	
+
+	@Column(name="email", unique=true)
+	private String email;
+	
+	@Column(name="password")
+	private String password;
+	
 
 	// will this create a column in my users table??
+	@Column(name="meal_id")
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name = "meal_id", unique = true, nullable = false, updatable = true)
+	// is this stating that the column in my users table can be unique or nullable, or in the meal
+	@JoinColumn(name = "meal_id", unique = false, nullable = true, updatable = true)
 	private MealOptions mealOptionsAttendee;
 	
 	
-	@Column(name="plus_one")
+	@Column(name="plus_one", unique=false, nullable=true)
 	private boolean plus_one;
 	
 	
 	// will this create a column in my users table??
+	@Column(name="meal_id_plus_one", unique = false, nullable=true)
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name = "meal_id", unique = true, nullable = false, updatable = true)
+	@JoinColumn(name = "meal_id", unique = false, nullable = true, updatable = true)
 	private MealOptions mealOptionsPlusOne;
 	
 	
 	// will this create a column in my users table??
+	@Column(name="wedding_id", unique = true, nullable=false)
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name = "wedding_id", unique = true, nullable = false, updatable = true)
+	@JoinColumn(name = "wedding_id", unique = false, nullable = true, updatable = true)
 	private Wedding wedding;
 	
 	
-	@Column(name="is_betrothed")
+	@Column(name="is_betrothed", unique=false, nullable=false)
 	private boolean is_betrothed;
+	
+	
+	// overloaded constructors
+	
+	public User() {
+		
+	}
+	
 	
 	
 	

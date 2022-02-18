@@ -40,12 +40,15 @@ public class Asset {
 	@Column(name = "company_name")
 	private String company_name;
 	
+	@Column(name="address")
+	private String address;
 
 	
 	@Column(name="price")
 	private double price;
 	
 	// will it automatically create a new column?? or do i need an @Column annotation?
+	@Column(name="asset_type_id", unique=false, nullable=false)
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "asset_type_id", unique = true, nullable = false, updatable = true)
@@ -58,13 +61,29 @@ public class Asset {
 	}
 
 
-	public Asset(int asset_id, String company_name, double price, AssetType assetType) {
+	public Asset(int asset_id, String company_name, String address, double price, AssetType assetType) {
 		super();
 		this.asset_id = asset_id;
 		this.company_name = company_name;
+		this.address = address;
 		this.price = price;
 		this.assetType = assetType;
 	}
+
+
+	
+	public String getAddress() {
+		return address;
+	}
+
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+
 
 
 	public int getAsset_id() {
@@ -107,10 +126,16 @@ public class Asset {
 	}
 
 
+
+
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(assetType, asset_id, company_name, price);
+		return Objects.hash(address, assetType, asset_id, company_name, price);
 	}
+
+
+
 
 
 	@Override
@@ -122,26 +147,22 @@ public class Asset {
 		if (getClass() != obj.getClass())
 			return false;
 		Asset other = (Asset) obj;
-		return Objects.equals(assetType, other.assetType) && asset_id == other.asset_id
-				&& Objects.equals(company_name, other.company_name)
+		return Objects.equals(address, other.address) && Objects.equals(assetType, other.assetType)
+				&& asset_id == other.asset_id && Objects.equals(company_name, other.company_name)
 				&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price);
 	}
 
 
+
+
+
 	@Override
 	public String toString() {
-		return "Asset [asset_id=" + asset_id + ", company_name=" + company_name + ", price=" + price + ", assetType="
-				+ assetType + "]";
-	}	
-	
-	
+		return "Asset [asset_id=" + asset_id + ", company_name=" + company_name + ", address=" + address + ", price="
+				+ price + ", assetType=" + assetType + "]";
+	}
 
-	
-	
-	
-	
-	
-	
+
 	
 
 }

@@ -31,35 +31,45 @@ public class Wedding {
 	@Column(name="wedding_id", unique=true, nullable=false)
 	private int wedding_id;
 	
-	@Column(name="wedding_date")
+	// as of right now, only one wedding can be booked for a particular date, for simplicity sake
+	@Column(name="wedding_date", unique = true, nullable=false)
 	private Date wedding_date;
 	
-	@Column(name="wedding_price")
-	private double wedding_price;
+	
+	@Column(name="wedding_budget")
+	private double wedding_budget;
 	
 	
 	// how do I represent venue_id, musician_id, caterer_id, florist_id, and photographer_id. 
 	//DO i create columns for each one? and do i need to 
+	@Column(name="venue_id", unique = true, nullable=true)
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "asset_id", unique = true, nullable = false, updatable = true)
 	private Asset venue;
 	
+	
+	@Column(name="musician_id", unique = true, nullable=true)
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "asset_id", unique = true, nullable = false, updatable = true)
 	private Asset musician;
 	
+	@Column(name="caterer_id", unique = true, nullable=true)
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "asset_id", unique = true, nullable = false, updatable = true)
 	private Asset caterer;
 	
+	
+	@Column(name="florist_id", unique = true, nullable=true)
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "asset_id", unique = true, nullable = false, updatable = true)
 	private Asset florist;
 	
+	
+	@Column(name="photographer_id", unique = true, nullable=true)
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "asset_id", unique = true, nullable = false, updatable = true)

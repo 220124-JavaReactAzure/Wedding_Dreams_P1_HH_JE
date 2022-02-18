@@ -32,6 +32,7 @@ public class UserType {
 	// if a user has type 2, they are an attendee
 	// if a user has type 3, they are betrothed
 	
+	@Column(name="description")
 	private String description;
 	
 	
