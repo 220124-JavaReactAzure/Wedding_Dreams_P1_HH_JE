@@ -16,7 +16,9 @@ public class MealOptionsDAO {
 	public boolean addNewMealOption(MealOptions mealOption) {
 		try {
 			Session session = HibernateUtil.getSession();
+			Transaction transaction = session.beginTransaction();
 			session.save(mealOption);
+			transaction.commit();
 			return true;
 
 		} catch (HibernateException | IOException e) {

@@ -48,10 +48,9 @@ public class Asset {
 	private double price;
 	
 	// will it automatically create a new column?? or do i need an @Column annotation?
-	@Column(name="asset_type_id", unique=false, nullable=false)
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name = "asset_type_id", unique = true, nullable = false, updatable = true)
+	@JoinColumn(name = "asset_type_id", referencedColumnName="asset_type_id", unique = true, nullable = false, updatable = true)
 	private AssetType assetType;
 	
 	

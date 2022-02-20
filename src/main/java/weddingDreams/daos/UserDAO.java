@@ -16,7 +16,9 @@ public class UserDAO {
 	public boolean addNewUser(User user) {
 		try {
 			Session session = HibernateUtil.getSession();
+			Transaction transaction = session.beginTransaction();
 			session.save(user);
+			transaction.commit();
 			return true;
 
 		} catch (HibernateException | IOException e) {

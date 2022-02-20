@@ -10,6 +10,13 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import weddingDreams.models.Asset;
+import weddingDreams.models.AssetType;
+import weddingDreams.models.MealOptions;
+import weddingDreams.models.User;
+import weddingDreams.models.UserType;
+import weddingDreams.models.Wedding;
+
 public class HibernateUtil {
 	
 	private static SessionFactory sessionFactory;
@@ -31,6 +38,13 @@ public class HibernateUtil {
 			// one more step.
 			// what can our xml do that our properties can't
 			// we need to add our annotated classes
+			configuration.addAnnotatedClass(Asset.class);
+			configuration.addAnnotatedClass(AssetType.class);
+			configuration.addAnnotatedClass(MealOptions.class);
+			configuration.addAnnotatedClass(UserType.class);
+			configuration.addAnnotatedClass(User.class);
+			configuration.addAnnotatedClass(Wedding.class);
+			
 			
 			
 			

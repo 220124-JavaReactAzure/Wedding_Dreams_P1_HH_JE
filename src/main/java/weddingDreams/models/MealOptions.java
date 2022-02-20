@@ -29,10 +29,25 @@ public class MealOptions {
 	
 	
 	
+	//overloaded constructors
+	public MealOptions() {
+		
+	}
+	
+	
+	public MealOptions(int meal_id, String meal_description) {
+		super();
+		this.meal_id = meal_id;
+		this.meal_description = meal_description;
+	}
+	
+	
+	
 	
 	public int getMeal_id() {
 		return meal_id;
 	}
+
 	public void setMeal_id(int meal_id) {
 		this.meal_id = meal_id;
 	}

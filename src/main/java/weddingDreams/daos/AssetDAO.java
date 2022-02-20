@@ -1,6 +1,8 @@
 package weddingDreams.daos;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -12,6 +14,7 @@ import org.hibernate.Transaction;
 import weddingDreams.util.HibernateUtil;
 
 import weddingDreams.models.Asset;
+import weddingDreams.models.Wedding;
 
 public class AssetDAO {
 
@@ -20,7 +23,9 @@ public class AssetDAO {
 	public boolean addNewAsset(Asset asset) {
 		try {
 			Session session = HibernateUtil.getSession();
+			Transaction transaction = session.beginTransaction();
 			session.save(asset);
+			transaction.commit();
 			return true;
 
 		} catch (HibernateException | IOException e) {
@@ -48,6 +53,34 @@ public class AssetDAO {
 		}
 
 	}
+	
+	
+	// get all of the assets for a particular date
+//	public List<Asset> getAllAvailableAssetsForDate(Date weddingDate) {
+//		try {
+//			Session session = HibernateUtil.getSession();
+//			List<Asset> allAssets = session.createQuery("FROM Asset").list();
+//			List<Asset> allAvailableAssets = new ArrayList<Asset>();
+//			List<Wedding> allWeddings = session.createQuery("From Wedding").list();
+//			for(Wedding wedding: allWeddings) {
+//				if(wedding.getVenue().getAsset_id()!=an_asset_id??) {
+//					
+//				}
+//			}
+//			return allAssets;
+//
+//		} catch (HibernateException | IOException e) {
+//			e.printStackTrace();
+//			return null;
+//		} finally {
+//			HibernateUtil.closeSession();
+//		}
+//
+//	}
+	
+	
+	
+	
 
 	public Asset getAssetById(int asset_id) {
 		try {
